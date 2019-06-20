@@ -1,0 +1,325 @@
+curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "myDevice-wastecontainer-sensor-345",
+    "type": "DeviceModel",
+    "category": {
+        "value": ["sensor"]
+    },
+    "function": {
+        "value": ["sensing"]
+    },
+    "modelName": {
+        "value": "S4Container 345"
+    },
+    "name": {
+        "value": "myDevice Sensor for Containers 345"
+    },
+    "brandName": {
+        "value": "myDevice"
+    },
+    "manufacturerName": {
+        "value": "myDevice Inc."
+    },
+    "controlledProperty": {
+        "value": ["fillingLevel", "temperature"]
+    }
+}'
+
+curl -G -X GET 'http://localhost:1026/v2/entities'
+
+curl -iX POST \
+  --url 'http://localhost:1026/v2/subscriptions' \
+  --header 'content-type: application/json' \
+  --data '{
+  "description": "Notify me of all DeviceModel changes",
+  "subject": {
+    "entities": [{"idPattern": ".*", "type": "DeviceModel"}],
+    "condition": {
+      "attrs": []
+    }
+  },
+  "notification": {
+    "http": {
+      "url": "https://ptsv2.com/t/ngxoi-1559250632/post"
+    },
+    "attrsFormat" : "keyValues"
+  }
+}'
+
+
+http://telefonicaid.github.io/fiware-orion/api/v2/stable/
+
+
+
+ curl --include \
+     --request PUT \
+     --header "Content-Type: application/json" \
+     --data-binary "{
+  \"value\": \"esto es una prueba\"
+  
+}" \
+'http://localhost:1026/v2/entities/myDevice-wastecontainer-sensor-345/attrs/manufacturerName'
+
+curl -iX POST \
+  'http://localhost:1026/v2/entities' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "id" : "device-9845A",
+  "type" : "Device",
+  "supportedProtocol" : {
+    "value" : [ "4g", "3g" ]
+  },
+  "configuration" : {
+    "value" : {
+      "timeout" : "10s",
+      "reporting period" : "5min"
+    }
+  },
+  "dateFirstUsed" : {
+    "value" : "2014-09-11T11:00:00.000+0000"
+  },
+  "controlledProperty" : {
+    "value" : [ "fillingLevel", "temperature" ]
+  },
+  "source" : {
+    "value" : "http://www.test.com/source"
+  },
+  "mcc" : {
+    "value" : "214"
+  },
+  "descriptiom" : {
+    "value" : "esto es un sensor"
+  },
+  "refDeviceModel" : {
+    "value" : "myDevice-wastecontainer-sensor-345"
+  },
+  "osVersion" : {
+    "value" : "10"
+  },
+  "provider" : {
+    "value" : "Huawei"
+  },
+  "hardwareVersion" : {
+    "value" : "1"
+  },
+  "firmwareVersion" : {
+    "value" : "3"
+  },
+  "value" : {
+    "value" : "234"
+  },
+  "batteryLevel" : {
+    "value" : 0.75
+  },
+  "owner" : {
+    "value" : [ "http://person.org/leon" ]
+  },
+  "rssi" : {
+    "value" : 0.86
+  },
+  "controlledAsset" : {
+    "value" : [ "wastecontainer-Osuna-100" ]
+  },
+  "serialNumber" : {
+    "value" : "9845A"
+  },
+  "mnc" : {
+    "value" : "07"
+  },
+  "dateLastCalibration" : {
+    "value" : "2019-06-01T18:20:39.000+0000"
+  },
+  "ipAddress" : {
+    "value" : [ "192.14.56.78" ]
+  },
+  "dateManufactured" : {
+    "value" : "2019-06-03T18:20:39.000+0000"
+  },
+  "macAddress" : {
+    "value" : [ "00:0a:95:9d:68:16" ]
+  },
+  "name" : {
+    "value" : "Sensor2000"
+  },
+  "location" : {
+    "value" : {
+      "latitude" : 0.0,
+      "longitude" : 200.0
+    }
+  },
+  "dataProvider" : {
+    "value" : "http://www.test.com/info"
+  },
+  "deviceState" : {
+    "value" : "ok"
+  },
+  "category" : {
+    "value" : [ "sensor" ]
+  },
+  "softwareVersion" : {
+    "value" : "2"
+  }
+}'
+
+
+
+
+
+
+
+  '{
+        "id": "device-9845A",
+        "type": "Device",
+        "category": ["sensor"],
+        "controlledProperty": ["fillingLevel","temperature"],
+        "controlledAsset":["wastecontainer-Osuna-100"],
+        "supportedProtocol":["4g","3g"],
+        "configuration":{"timeout":"10s","reporting period":"5min"},
+        "location":{"latitute":100.0,"longitude":200.0},
+        "ipAddress": ["192.14.56.78"],
+        "mcc": "214",
+        "source": "http://www.test.com/source",
+        "dataProvider": "http://www.test.com/info",
+        "mnc": "07",
+        "batteryLevel": 0.75,
+        "serialNumber": "9845A",
+        "macAddress": ["00:0a:95:9d:68:16"],
+        "hardwareVersion":"1",
+        "softwareVersion":"2",
+        "osVersion":"10",
+        "firmwareVersion":"3",
+        "dateLastCalibration":"2019-06-3T8:20:39Z",
+        "provider":"Huawei",
+        "name":"Sensor2000",
+        "description":"esto es un sensor",
+        "dateManufactured":"2019-06-1T8:20:39Z",
+        "refDeviceModel":"myDevice-wastecontainer-sensor-345",
+        "rssi": 0.86,
+        "value": "234",
+        "deviceState": "ok",
+        "dateFirstUsed": "2014-09-11T11:00:00Z",
+        "owner": ["http://person.org/leon"]
+    }'
+
+curl -iX POST \
+  --url 'http://localhost:1026/v2/subscriptions' \
+  --header 'content-type: application/json' \
+  --data '{
+  "description": "Notify me of all DeviceModel changes",
+  "subject": {
+    "entities": [{"idPattern": ".*", "type": "DeviceModel"}],
+    "condition": {
+      "attrs": []
+    }
+  },
+  "notification": {
+    "http": {
+      "url": "http://localhost:8080/devicemodel"
+    },
+    "attrsFormat" : "keyValues"
+  }
+}'
+
+curl -iX POST \
+  --url 'http://localhost:1026/v2/subscriptions' \
+  --header 'content-type: application/json' \
+  --data '{
+  "description": "Notify me of all Device changes",
+  "subject": {
+    "entities": [{"idPattern": ".*", "type": "Device"}],
+    "condition": {
+      "attrs": []
+    }
+  },
+  "notification": {
+    "http": {
+      "url": "http://localhost:8080"
+    },
+    "attrsFormat" : "keyValues"
+  }
+}'
+
+
+
+curl --include \
+     --request PUT \
+     --header "Content-Type: application/json" \
+     --data-binary "{
+  \"value\": \"esto es una prueba\"
+  
+}" \
+'http://localhost:1026/v2/entities/myDevice-wastecontainer-sensor-345/attrs/manufacturerName'
+
+
+curl --include \
+     --request PUT \
+     --header "Content-Type: application/json" \
+     --data-binary "{
+  \"value\": \"esto es una prueba\"
+  
+}" \
+'http://localhost:1026/v2/entities/device-9845A/attrs/description'
+
+
+curl --include \
+     --request PUT \
+     --header "Content-Type: application/json" \
+     --data-binary "{
+  \"value\": \"400\"
+  
+}" \
+'http://localhost:1026/v2/entities/device-9845A/attrs/value'
+
+
+
+
+
+
+
+
+curl --include \
+     --request PUT \
+     --header "Content-Type: application/json" \
+     --data-binary "{
+  \"value\":\"prueba\"
+}" \
+'http://localhost:1026/v2/entities/myDevice-wastecontainer-sensor-345/attrs/modelName/value'
+
+
+        
+       
+    
+
+ contraseña servidor mysql: asdf1234
+ cd /usr/local/mysql/bin
+  ./mysql -u root -p
+
+  CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'prueba123';
+https://linuxize.com/post/how-to-create-mysql-user-accounts-and-grant-privileges/
+   
+   
+ 
+       curl -G -X GET \
+   'http://localhost:1026/v2/entities/myDevice-wastecontainer-sensor-345' \
+   -d 'options=keyValues'
+
+
+curl -G -X GET \
+   'http://localhost:1026/v2/entities/device-9845A' \
+   -d 'options=keyValues'
+       
+
+
+      
+   
+ 
+       
+
+    
+        
+  
+      
+ 
+  
