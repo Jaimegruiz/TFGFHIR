@@ -45,8 +45,9 @@ public class DeviceModel {
     
     
     public DeviceModel() {
-    	
+    	type = "DeviceModel";
     }
+    
     
    
 	public String getId() {
